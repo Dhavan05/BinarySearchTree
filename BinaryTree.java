@@ -296,6 +296,21 @@ class BTree {
 			insert(to);
 		}
 	}
+
+	public int countLeaf() {
+		return countLeaf(root);
+	}
+
+	private int countLeaf(Node node) {
+		if (node == null)
+			return 0;
+		else if (node.getLeft() == null && node.getRight() == null) {
+			System.out.print(node.getValue() + " ");
+			return 1;
+		} else
+			return countLeaf(node.getLeft()) + countLeaf(node.getRight());
+	}
+
 }
 
 public class BinaryTree {
@@ -314,25 +329,27 @@ public class BinaryTree {
 		binaryTree.insert("6");
 
 		System.out.println("Count: " + binaryTree.countNodes());
-		
+
 		binaryTree.inorder();
 		binaryTree.preorder();
 		binaryTree.postorder();
-		
+
 		System.out.println("Height: " + binaryTree.height());
-		
+
 		binaryTree.display();
-		
+
 		binaryTree.search("7");
 
 		binaryTree.delete("4");
 		binaryTree.inorder();
-		
+
 		binaryTree.deleteRec("9");
 		binaryTree.inorder();
-		
+
 		binaryTree.replace("5", "4");
 		binaryTree.inorder();
+
+		System.out.println("\nCount Leaf:" + binaryTree.countLeaf());
 	}
 
 }
